@@ -7,4 +7,9 @@ class generar:
         self.__mayusculas
         self.__caracteres
         
-    def 
+    contra = ('0123456789abcdefghijklmnopqrstuvwxyz')
+    mayus = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    carac = ('!"#$%&/()=?¡')
+    
+    def validarContraseña(self,contra,mayus,carac):
+        
