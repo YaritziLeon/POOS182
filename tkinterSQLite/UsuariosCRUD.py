@@ -1,6 +1,15 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+from webbrowser import get
+from controladorBD import *
+
+#Crear Instancia(Puente entre los dos archivos)
+controlador= controladorBD()
+
+#Metodo que usa mi objeto controlador para insertar
+def ejecutaInsert():
+    controlador.guardarUsuario(varNom.get(),varCor.get(),varCon.get())
 
 ventana=Tk()
 ventana.title("CRUD de usuarios")
@@ -25,7 +34,7 @@ varCon=tk.StringVar()
 lb1Con=Label(pest1,text="Contraseña: ").pack()
 txtCon=Entry(pest1,textvariable=varCon).pack()
 # Agregamos el boton
-btnGuardar=Button(pest1,text="Guardar Usuarios",bg="#abf7d2").pack()
+btnGuardar=Button(pest1,text="Guardar Usuarios",bg="#abf7d2",command=ejecutaInsert).pack()
 #Agregamos nuestras pestañas
 panel.add(pest1,text="Formulario de Usuarios")
 panel.add(pest2,text="Buscar Usuario")
