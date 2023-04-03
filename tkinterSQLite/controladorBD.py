@@ -27,7 +27,7 @@ class controladorBD:
             #cuando los datos no esten vacios vamoa hacer lo soguiente:
             #3.Realiar el insert a la BD--- cremos un objeto llamado cursor con la conexion
             #Preparamos las variables necesarias
-            cursor=conex.cursor()
+            cursor1=conex.cursor()
             conH=self.encriptarContra(con)
             #Preparar los datos dentro de una lista
             datos=(nom,cor,conH)
@@ -35,7 +35,7 @@ class controladorBD:
             sqlInsert="insert into tbregistrados(nombre,correo,contra) values(?,?,?)"
                 
             #5.Ejecutamos inserts y cerramos la conexion
-            cursor.execute(sqlInsert,datos)
+            cursor1.execute(sqlInsert,datos)
             conex.commit()
             conex.close()
             messagebox.showinfo("Correcto","Usuario guardado")
@@ -52,7 +52,7 @@ class controladorBD:
         #regresamos la contraseña encriptada
         return conHa
     
-    def consultarUsuario(self,id):
+    def buscarUsuario(self,id):
         #1.Realizar conexion BD
         conex=self.conexionBD()
         #2.Verificar el ID
@@ -63,13 +63,25 @@ class controladorBD:
             #3.Proceder a la consulta
             try:
                 #4.Preparamos lo necesario
-                cursor=conex.cursor()
+                cursor2=conex.cursor()
                 sqlSelect="select * from tbregistrados where id= "+id
                 #5.Ejecutamos y cerramos conexion
-                cursor.execute(sqlSelect)
+                cursor2.execute(sqlSelect)
                 #fetchall toma todo y lo pasa a una variable 
-                RSusuario=cursor.fetchall()
+                RSusuario=cursor2.fetchall()
                 conex.close()
                 return RSusuario
             except sqlite3.OperationalError:
                 print("Error de consulta")
+    
+    def consultarUsuario(self):
+        conex=self.conexionBD()
+        try:
+            cursor3=conex.cursor()
+            sqlSelect="select * from tbregistrados"
+            cursor3.execute(sqlSelect)
+            Cusuario=cursor3.fetchall()
+            conex.close()
+            return Cusuario
+        except sqlite3.OperationalError:
+            print("Error")

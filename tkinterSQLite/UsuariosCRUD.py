@@ -12,16 +12,33 @@ def ejecutaInsert():
     controlador.guardarUsuario(varNom.get(),varCor.get(),varCon.get())
 #Metodo que usa mi objeto controlador para Buscar un Usuario
 def ejecutaSelect():
-    rsUsu=controlador.consultarUsuario(varBus.get())
+    rsUsu=controlador.buscarUsuario(varBus.get())
     #Iteramos el contenido de la consulta y lo guardamos 
+    
     for usu in rsUsu:
         cadena=str(usu[0])+" "+usu[1]+" "+usu[2]+" "+str(usu[3])
     
     if(rsUsu):
-        messagebox.showinfo("Encontrado",cadena)
+        textBus.config(state='normal')
+        textBus.delete(1.0,'end')
+        textBus.insert('end',cadena)
+        textBus.config(state='disabled')
+        # messagebox.showinfo("Encontrado",cadena)
     else:
         messagebox.showinfo("No encontrado","El ususario no existe en la BD")
 
+
+def ejecuSelect():
+    Cusu=controlador.consultarUsuario()
+    
+    for usuario in Cusu:
+        cadena2=str(usuario[0])+" "+usuario[1]+" "+usuario[2]+" "+str(usuario[3])
+        textCon.config(state='normal')
+        textCon.delete(10.0,'end')
+        textCon.insert('end' ,cadena2)
+        textCon.config(state='disabled')
+        # messagebox.showinfo("Encontrado",cadena2)
+    
 ventana=Tk()
 ventana.title("CRUD de usuarios")
 ventana.geometry("500x300")
@@ -55,7 +72,18 @@ txtid=Entry(pest2,textvariable=varBus).pack()
 btnBusqueda=Button(pest2,text="Buscar",bg="#abf7d2",command=ejecutaSelect).pack()
 
 subBus=Label(pest2,text="Registrado",fg="Blue",font=("Modern",14)).pack()
-textBus=tk.Text(pest2,height=5,width=52).pack()
+textBus=tk.Text(pest2,height=5,width=52)
+textBus.pack()
+
+# Pestaña 3: Consultar Usuario
+titulo3=Label(pest3,text="Consultar Usuario", fg="#f788c7",font=("ALGERIAN",18)).pack()
+# Agregamos el boton a la pestaña 3
+btnConsulta=Button(pest3,text="Consultar",bg="#abf7d2",command=ejecuSelect).pack()
+
+
+subCon=Label(pest3,text="Usuarios Registrados",fg="Blue",font=("Modern",14)).pack()
+textCon=tk.Text(pest3,height=5,width=52)
+textCon.pack()
 
 #Agregamos nuestras pestañas
 panel.add(pest1,text="Formulario de Usuarios")
