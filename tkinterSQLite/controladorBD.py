@@ -85,3 +85,39 @@ class controladorBD:
             return Cusuario
         except sqlite3.OperationalError:
             print("Error")
+            
+    def actualizarUsuario(self,nom2,cor2,con2,id2):
+        
+        conex=self.conexionBD()
+        if(nom2 =="" or cor2 =="" or con2 =="" or id2 ==""):
+            messagebox.showwarning("Error","Llena el Formulario")
+            conex.close()
+        else:
+            try:
+                cursor4=conex.cursor()
+                datos2=(nom2,cor2,con2)
+                sqlUpdate="update tbregistrados set nombre=?,correo=?,contra=? where id= "+id2
+                cursor4.execute(sqlUpdate,datos2)
+                ACusu=cursor4.fetchall()
+                conex.commit()
+                conex.close()
+                return ACusu
+            except sqlite3.OperationalError:
+                print("Error")
+                
+    def eliminarUsuario(self,id3):
+        conex=self.conexionBD()
+        if(id3==""):
+            messagebox.showwarning("Cuidado","Escribe un Identificador")
+            conex.close()
+        else:
+            try:
+                cursor5=conex.cursor()
+                sqlDelete="delete from tbregistrados where id= "+id3
+                cursor5.execute(sqlDelete)
+                conex.commit()
+                conex.close()
+                
+                messagebox.showinfo("Listo","Se elimino el usuario")
+            except sqlite3.OperationalError:
+                print("Error de consulta")
