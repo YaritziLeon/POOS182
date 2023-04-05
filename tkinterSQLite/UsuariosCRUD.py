@@ -41,17 +41,7 @@ def ejecuSelect():
     
 # Pestaña 4
 def ejecutaUpdate():
-    actUsu=controlador.actualizarUsuario(varAct.get(),varNomb2.get(),varCorr2.get(),varCont2.get())
-    for Musuario in actUsu:
-        cadena3=str(Musuario[0])+" "+Musuario[1]+" "+Musuario[2]+" "+str(Musuario[3])
-        
-        tabla.update('',tk.END,values=cadena3)
-        varNomb2.set(tabla.item('',"values")[1])
-        varCorr2.set(tabla.item('',"values")[2])
-        varCont2.set(tabla.item('',"values")[3])
-        
-        tabla.bind('<<TreeviewSelect>>',ejecutaUpdate)
-        
+    controlador.actualizarUsuario(varAct.get(),varNomb2.get(),varCorr2.get(),varCont2.get())
     messagebox.showinfo("Listo","Se actualizo")
     
 # Pestaña 5

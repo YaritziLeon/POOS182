@@ -85,6 +85,7 @@ class controladorBD:
             return Cusuario
         except sqlite3.OperationalError:
             print("Error")
+    
             
     def actualizarUsuario(self,nom2,cor2,con2,id2):
         
@@ -95,13 +96,12 @@ class controladorBD:
         else:
             try:
                 cursor4=conex.cursor()
-                datos2=(nom2,cor2,con2)
+                
                 sqlUpdate="update tbregistrados set nombre=?,correo=?,contra=? where id= "+id2
+                datos2=(nom2,cor2,con2)
                 cursor4.execute(sqlUpdate,datos2)
-                ACusu=cursor4.fetchall()
                 conex.commit()
                 conex.close()
-                return ACusu
             except sqlite3.OperationalError:
                 print("Error")
                 
