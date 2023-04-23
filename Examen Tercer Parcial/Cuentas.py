@@ -9,7 +9,7 @@ def ejecutaInsertar():
     controlador.InsertarCuenta(varNCuenta.get(),varSaldo.get(),varNombre.get(),varCorreo.get())
 
 def ejecutaActualizar():
-    controlador.actualizarCuenta(varNCuenta.get(),varSaldo.get(),varNombre.get(),varCorreo.get())
+    controlador.actualizarCuenta(varActualizar.get(),varNCuenta.get(),varSaldo.get(),varNombre.get(),varCorreo.get())
     messagebox.showinfo("Listo","Se actualizo")
 
 def ejecutaConsultar():

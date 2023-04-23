@@ -31,7 +31,7 @@ class controladorBDBanco:
     
     def actualizarCuenta(self,num2,sal2,nom2,cor2,id):
         
-        conex=self.conexionBD()
+        conex=self.conexBD()
         if(num2 =="" or sal2 =="" or nom2 =="" or cor2 =="" or id ==""):
             messagebox.showwarning("Error","Llena el Formulario")
             conex.close()
