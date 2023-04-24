@@ -3,7 +3,7 @@ from tkinter import messagebox
 class generarP14:
     
     def __init__(self):
-        self.__saldo=1000    
+        self.__saldo=0    
         
 
     def Consultar(self):

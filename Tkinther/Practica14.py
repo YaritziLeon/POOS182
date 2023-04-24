@@ -20,7 +20,7 @@ def DepositarS():
 
 ventana=Tk()
 ventana.title("Caja Popular")
-ventana.geometry("500x400")
+ventana.geometry("300x250")
 
 panel=ttk.Notebook(ventana)
 panel.pack(fill='both',expand='yes')
